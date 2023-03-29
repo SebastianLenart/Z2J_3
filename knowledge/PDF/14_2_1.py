@@ -2,7 +2,7 @@ from pathlib import Path
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
 pdf_path2 = "C:\\Users\\Dell\\Z2J_3\\knowledge\\Pride_and_Prejudice.pdf"
-pdf_path = "C:\\Users\\Sebastian\\Z2J_3\\knowledge\\Pride_and_Prejudice.pdf"
+pdf_path = "/knowledge/PDF/Pride_and_Prejudice.pdf"
 input_pdf = PdfFileReader(pdf_path)
 first_page = input_pdf.getPage(0)
 pdf_writer = PdfFileWriter()
