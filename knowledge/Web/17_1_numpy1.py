@@ -1,9 +1,15 @@
 import numpy as np
 
-matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+matrix = np.array([[1, 2, 3], [4, 55, 6], [7, 8, 9]])
 print(2*matrix)
 print(matrix[1][1]) # OR
 print(matrix[1, 1]) # !!!
+print("*"*10)
+print(matrix.shape)
+print(matrix.diagonal())
+print(matrix.flatten())
+print(matrix.transpose())
+print(matrix.min()," ; ", matrix.max(), " ; ", matrix.mean(), " ; ", matrix.sum())
 print("*"*10)
 
 """
