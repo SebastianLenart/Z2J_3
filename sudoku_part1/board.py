@@ -10,10 +10,14 @@ class Board:
     pp = [p1, p2, p3]
 
     def __init__(self):
-        self.points = []
-        self.squares = []
-        self.list_of_numbers = [[0] * self.N] * self.N
-        self.add_squares()
+        self.list_of_numbers2 = [[0] * self.N] * self.N # only to tests
+        self.list_of_numbers = [[0 for i in range(self.N)] for j in range(self.N)]
+
+    """ IMPORTANT!!!!!!
+            print(self.list_of_numbers[0] is self.list_of_numbers[1])
+            print(self.list_of_numbers2[0] is self.list_of_numbers2[1]) # SEPARATE LISTS !!!!!!!!
+    
+    """
 
     def add_numbers_to_list(self):
         for i in range(11):
@@ -21,43 +25,47 @@ class Board:
                 self.list_of_numbers[i] = "-----------"
                 continue
             for j in range(11):
-                # self.list_of_numbers[i][j] = 1
                 if j in [3, 7]:
                     self.list_of_numbers[i][j] = "|"
                     continue
+        self.add_squares()
         return self.list_of_numbers
 
-    def add_squares(self):
-        for x in self.pp:
-            for y in x:
-                for z in self.pp:
-                    for v in z:
-                        self.points.append([y, v])
-
-        # pprint.pp(self.points)
-        # square without duplicates
-        a = zip(self.p1, self.p1)
-        for s in range(3):
-
-            print(s)
-
-
+    def add_squares(self):  # very difficult function!!!! BUT WORK!
+        for k in range(3):
+            for l in range(3):
+                bufor_unique_numbers = random.sample(range(1, 10), 9)
+                for i in range(3):
+                    for j in range(3):
+                        self.list_of_numbers[self.pp[k][i]][self.pp[l][j]] = bufor_unique_numbers.pop()
 
     def display_board(self, list_chars):
         for i in range(11):
             print(*list_chars[i])
+        print("*"*10)
+
+    def check_duplicate_row_column(self):
+        for row in range(self.N): # check rows
+            self.is_duplicate(self.list_of_numbers[row], "row")
+        for row in range(self.N): # check columns
+            bufor_column = []
+            for col in range(self.N):
+                bufor_column.append(self.list_of_numbers[col][row], "column")
+            self.is_duplicate(bufor_column)
 
 
-    # def check_duplicate_row_column(self):
-    #     for line in self.LINES:
-    #         if self.is_duplicate([self.list_of_numbers[line[0]], self.list_of_numbers[line[1]],
-    #                               self.list_of_numbers[line[2]]]):
-    #             print("Row or colum contains duplicate")
-    #             return False
-    #     return True
-    #
-    # def is_duplicate(self, list):
-    #     if len(list) == len(set(list)):
-    #         return False
-    #     else:
-    #         return True
+    def is_duplicate(self, list, where):
+        bufor_list = []
+        bufor_set = set()
+        for num in list:
+            if num in [x for x in range(1, 10)]:
+                bufor_list.append(num)
+                bufor_set.add(num)
+        # print(bufor_list)
+        # print("len list:", len(bufor_list), "len set:", len(bufor_set))
+        if len(list) == len(set(list)):
+            return False
+        else:
+            print(f"Exist duplicate in {where}")
+            exit()
+            return True
