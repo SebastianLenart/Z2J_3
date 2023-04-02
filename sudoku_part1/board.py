@@ -50,8 +50,8 @@ class Board:
         for row in range(self.N): # check columns
             bufor_column = []
             for col in range(self.N):
-                bufor_column.append(self.list_of_numbers[col][row], "column")
-            self.is_duplicate(bufor_column)
+                bufor_column.append(self.list_of_numbers[col][row])
+            self.is_duplicate(bufor_column, "column")
 
 
     def is_duplicate(self, list, where):
